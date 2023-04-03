@@ -1,4 +1,4 @@
-namespace BlogNet.Web.Models
+namespace BlogNet.Web.ViewModels
 {
     public class ErrorViewModel
     {
