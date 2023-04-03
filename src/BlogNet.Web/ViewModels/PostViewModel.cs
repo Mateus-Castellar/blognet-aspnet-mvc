@@ -18,4 +18,6 @@ public class PostViewModel
     [Required(ErrorMessage = "O Campo {0} é obrigatório")]
     public required string Descricao { get; set; }
     public int? Curtidas { get; set; }
+
+    public Guid UserId { get; set; }
 }
