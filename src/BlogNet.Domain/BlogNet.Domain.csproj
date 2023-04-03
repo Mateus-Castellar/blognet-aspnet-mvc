@@ -7,7 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <EditorConfigFiles Remove="C:\Code\Estudo\Aspnet\BlogNet\src\BlogNet.Domain\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Code\Estudo\Aspnet\BlogNet\src\BlogNet.Domain\.editorconfig" />
   </ItemGroup>
 
 </Project>
