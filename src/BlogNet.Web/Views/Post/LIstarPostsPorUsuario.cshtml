@@ -10,7 +10,7 @@
             if (Model.Count == 0)
             {
                 <p>Você não possui posts cadastrados!</p>
-                <a asp-controller="Post" asp-action="Cadastro" class="btn btn-secondary">Adicionar uma postagem!</a>
+                <a asp-controller="Post" asp-action="Cadastro" class="btn btn-warning">Adicionar uma postagem!</a>
             }
             else
             {
@@ -19,9 +19,12 @@
 
                 @foreach (var item in Model)
                 {
-                    <div class="row">
+                    <div>
                         <p>@item.Titulo</p>
-                        <a asp-asp-controller="Post" asp-action="Editar" asp-route-id="@item.Id">Editar</a>
+                        <div class="text-row">
+                            <a class="btn btn-primary" asp-controller="Post" asp-action="Editar" asp-route-id="@item.Id">Editar</a>
+                            <a class="btn btn-danger" asp-controller="Post" asp-action="Remover" asp-route-id="@item.Id">Remover</a>
+                        </div>
                         <hr>
                     </div>
                 }

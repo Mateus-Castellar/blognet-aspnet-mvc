@@ -48,7 +48,7 @@ public class PostController : Controller
     }
 
     [Route("meus-posts")]
-    public async Task<IActionResult> LIstarPostsPorUsuario()
+    public async Task<IActionResult> ListarPostsPorUsuario()
     {
         var user = await _user.GetUserAsync(User);
         var posts = await _postRepository.ObterPostsPorUsuarioId(Guid.Parse(user!.Id));
@@ -86,5 +86,28 @@ public class PostController : Controller
         await _postRepository.Atualizar(postAtualizado);
 
         return RedirectToAction("Index", "Home");
+    }
+
+    [Route("remover-post/{id:guid}")]
+    public async Task<IActionResult> Remover(Guid id)
+    {
+        var post = await _postRepository.ObterPorId(id);
+
+        if (post is null) return NotFound();
+
+        return View("Deletar", _mapper.Map<PostViewModel>(post));
+    }
+
+    [Route("remover-post/{id:guid}")]
+    [HttpPost, ActionName("Remover")]
+    public async Task<IActionResult> RemoverConfirmacao(Guid id)
+    {
+        var post = await _postRepository.ObterPorId(id);
+
+        if (post is null) return NotFound();
+
+        await _postRepository.Remover(post.Id);
+
+        return RedirectToAction(nameof(ListarPostsPorUsuario));
     }
 }
