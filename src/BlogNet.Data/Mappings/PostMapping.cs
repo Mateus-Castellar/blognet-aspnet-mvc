@@ -29,5 +29,19 @@ public class PostMapping : IEntityTypeConfiguration<PostModel>
         //public int Curtidas { get; set; }
         builder.Property(x => x.Curtidas)
             .IsRequired(false);
+
+        //public required DateTime CriadoEm { get; set; }
+        builder.Property(x => x.CriadoEm)
+            .HasColumnType("datetime")
+            .IsRequired();
+
+        //public DateTime? AtualizadoEm { get; set; }
+        builder.Property(x => x.AtualizadoEm)
+            .HasColumnType("datetime")
+            .IsRequired(false);
+
+        //public Guid UserId { get; set; }
+        builder.Property(x => x.UserId)
+            .IsRequired();
     }
 }

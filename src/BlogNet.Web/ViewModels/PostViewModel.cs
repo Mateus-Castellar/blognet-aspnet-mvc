@@ -17,7 +17,14 @@ public class PostViewModel
     [DisplayName("Descricao")]
     [Required(ErrorMessage = "O Campo {0} é obrigatório")]
     public required string Descricao { get; set; }
+
     public int? Curtidas { get; set; }
+
+    [DisplayName("Data de Criação")]
+    public required DateTime CriadoEm { get; set; }
+
+    [DisplayName("Atualizado Em")]
+    public DateTime? AtualizadoEm { get; set; }
 
     public Guid UserId { get; set; }
 }
