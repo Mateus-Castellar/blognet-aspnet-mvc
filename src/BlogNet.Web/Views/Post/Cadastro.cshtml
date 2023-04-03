@@ -1,0 +1,35 @@
+﻿@model BlogNet.Web.ViewModels.PostViewModel
+
+@{
+    ViewData["Title"] = "Novo Post";
+}
+
+<section>
+    <div class="container text-center">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <p>Um novo post aqui dentro!</p>
+
+        <form asp-action="Cadastro">
+            <div class="mb-3">
+                <label asp-for="Titulo" class="form-label">Titulo</label>
+                <input asp-for="Titulo" type="text" class="form-control">
+                <span asp-validation-for="Titulo" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Imagem" class="form-label">Imagem</label>
+                <input asp-for="Imagem" type="text" class="form-control">
+                <span asp-validation-for="Imagem" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Descricao" class="form-label">Titulo</label>
+                <input asp-for="Descricao" type="text" class="form-control">
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+
+            <input type="submit" value="Cadastrar" class="btn btn-success"/>
+        </form>
+    </div>
+</section>
