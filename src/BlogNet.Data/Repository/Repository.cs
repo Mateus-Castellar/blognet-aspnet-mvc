@@ -7,8 +7,8 @@ namespace BlogNet.Data.Repository;
 
 public class Repository<T> : IRepository<T> where T : class
 {
-    private readonly AppBlogContext _context;
-    private readonly DbSet<T> _dbSet;
+    protected readonly AppBlogContext _context;
+    protected readonly DbSet<T> _dbSet;
 
     public Repository(AppBlogContext context)
     {

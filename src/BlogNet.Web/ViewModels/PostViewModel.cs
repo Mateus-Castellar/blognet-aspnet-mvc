@@ -5,6 +5,11 @@ namespace BlogNet.Web.ViewModels;
 
 public class PostViewModel
 {
+    public PostViewModel()
+    {
+        CriadoEm = DateTime.Now;
+    }
+
     [Key]
     public Guid Id { get; set; }
 

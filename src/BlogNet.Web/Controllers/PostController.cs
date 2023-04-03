@@ -14,12 +14,15 @@ public class PostController : Controller
     private readonly IPostService _postService;
     private readonly IMapper _mapper;
     private readonly UserManager<IdentityUser> _user;
+    private readonly IPostRepository _postRepository;
 
-    public PostController(IPostService postService, IMapper mapper, UserManager<IdentityUser> user)
+    public PostController(IPostService postService, IMapper mapper, UserManager<IdentityUser> user,
+        IPostRepository postRepository)
     {
         _postService = postService;
         _mapper = mapper;
         _user = user;
+        _postRepository = postRepository;
     }
 
     [Route("novo-post")]
@@ -40,5 +43,13 @@ public class PostController : Controller
         await _postService.Adicionar(_mapper.Map<PostModel>(postViewModel));
 
         return RedirectToAction("Index", "Home");
+    }
+
+    [Route("meus-posts")]
+    public async Task<IActionResult> LIstarPostsPorUsuario()
+    {
+        var user = await _user.GetUserAsync(User);
+        var posts = await _postRepository.ObterPostsPorUsuarioId(Guid.Parse(user!.Id));
+        return View(_mapper.Map<List<PostViewModel>>(posts));
     }
 }
