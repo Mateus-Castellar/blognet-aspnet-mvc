@@ -19,7 +19,11 @@
 
                 @foreach (var item in Model)
                 {
-                    <p>@item.Titulo</p>
+                    <div class="row">
+                        <p>@item.Titulo</p>
+                        <a asp-asp-controller="Post" asp-action="Editar" asp-route-id="@item.Id">Editar</a>
+                        <hr>
+                    </div>
                 }
             }
         }

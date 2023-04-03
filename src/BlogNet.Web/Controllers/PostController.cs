@@ -38,7 +38,9 @@ public class PostController : Controller
         if (ModelState.IsValid is false) return View(postViewModel);
 
         var user = await _user.GetUserAsync(User);
+
         postViewModel.UserId = Guid.Parse(user!.Id);
+        postViewModel.CriadoEm = DateTime.Now;
 
         await _postService.Adicionar(_mapper.Map<PostModel>(postViewModel));
 
@@ -51,5 +53,38 @@ public class PostController : Controller
         var user = await _user.GetUserAsync(User);
         var posts = await _postRepository.ObterPostsPorUsuarioId(Guid.Parse(user!.Id));
         return View(_mapper.Map<List<PostViewModel>>(posts));
+    }
+
+    [Route("editar-post/{id}")]
+    public async Task<IActionResult> Editar(Guid id)
+    {
+        var post = await _postRepository.ObterPorId(id);
+
+        if (post is null) return NotFound();
+
+        return View(_mapper.Map<PostViewModel>(post));
+    }
+
+    [HttpPost]
+    [Route("editar-post/{id:guid}")]
+    public async Task<IActionResult> Editar(Guid id, PostViewModel postViewModel)
+    {
+        if (id != postViewModel.Id) return NotFound();
+
+        if (ModelState.IsValid is false) return View(postViewModel);
+
+
+        var postAtualizado = await _postRepository.ObterPorId(id);
+
+        if (postAtualizado is null) return NotFound();
+
+        postAtualizado.Descricao = postViewModel.Descricao;
+        postAtualizado.Titulo = postViewModel.Titulo;
+        postAtualizado.Curtidas = postViewModel.Curtidas;
+        postAtualizado.AtualizadoEm = DateTime.Now;
+
+        await _postRepository.Atualizar(postAtualizado);
+
+        return RedirectToAction("Index", "Home");
     }
 }

@@ -1,16 +1,16 @@
 ﻿@model BlogNet.Web.ViewModels.PostViewModel
 
 @{
-    ViewData["Title"] = "Novo Post";
+    ViewData["Title"] = "Atualizar Post";
 }
 
 <section>
     <div class="container text-center">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-        <h2>Comece a compartilhar histórias com o Blog<span class="text-warning">Net</span> ;)</h2>
+        <p>Um novo post aqui dentro!</p>
 
-        <form asp-action="Cadastro" class="mt-5">
+        <form asp-action="Editar">
             <div class="mb-3">
                 <label asp-for="Titulo" class="form-label">Titulo</label>
                 <input asp-for="Titulo" type="text" class="form-control">
@@ -24,13 +24,12 @@
             </div>
 
             <div class="mb-3">
-                <label asp-for="Descricao" class="form-label">Descrição</label>
+                <label asp-for="Descricao" class="form-label">Titulo</label>
                 <input asp-for="Descricao" type="text" class="form-control">
                 <span asp-validation-for="Descricao" class="text-danger"></span>
             </div>
 
-            <input type="submit" value="Postar" class="btn btn-success"/>
-            <a asp-action="Index" asp-controller="Home" class="btn btn-danger">Voltar</a>
+            <input type="submit" value="Atualizar Postagem" class="btn btn-success"/>
         </form>
     </div>
 </section>
