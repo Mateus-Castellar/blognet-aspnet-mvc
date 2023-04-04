@@ -14,6 +14,20 @@ public class PostRepository : Repository<PostModel>, IPostRepository
         await _context.SaveChangesAsync();
     }
 
+    public async Task DescurtirPost(CurtidaModel curtida)
+    {
+
+        _context.Curtidas.Remove(curtida);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task<PostModel?> ObterPostCurtidasPorId(Guid id)
+    {
+        return await _dbSet
+            .Include(x => x.Curtidas)
+            .FirstOrDefaultAsync(x => x.Id == id);
+    }
+
     public async Task<List<PostModel>> ObterPostsPorUsuarioId(Guid userId)
     {
         return await _dbSet

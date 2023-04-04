@@ -113,11 +113,21 @@ public class PostController : Controller
     [HttpPost("curtir")]
     public async Task<IActionResult> CurtirPost(Guid id)
     {
-        var post = await _postRepository.ObterPorId(id);
+        var post = await _postRepository.ObterPostCurtidasPorId(id);
 
         if (post is null) return NotFound();
 
         var user = await _user.GetUserAsync(User);
+
+        var jaCurtiu = post.Curtidas?
+            .FirstOrDefault(x => x.UserId == Guid.Parse(user!.Id));
+
+        //se já curtiu ele deve descurtir
+        if (jaCurtiu is not null)
+        {
+            await _postRepository.DescurtirPost(jaCurtiu);
+            return RedirectToAction(nameof(ListarPostsPorUsuario));
+        }
 
         var curtida = new CurtidaModel()
         {
