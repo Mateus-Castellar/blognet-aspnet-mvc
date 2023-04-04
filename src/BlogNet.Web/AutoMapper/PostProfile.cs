@@ -8,6 +8,10 @@ public class PostProfile : Profile
 {
     public PostProfile()
     {
-        CreateMap<PostViewModel, PostModel>().ReverseMap();
+        CreateMap<PostViewModel, PostModel>();
+
+        CreateMap<PostModel, PostViewModel>()
+            .ForMember(des => des.Curtidas, opt
+            => opt.MapFrom(src => src.Curtidas.Count));
     }
 }

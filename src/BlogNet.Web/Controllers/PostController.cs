@@ -80,7 +80,6 @@ public class PostController : Controller
 
         postAtualizado.Descricao = postViewModel.Descricao;
         postAtualizado.Titulo = postViewModel.Titulo;
-        postAtualizado.Curtidas = postViewModel.Curtidas;
         postAtualizado.AtualizadoEm = DateTime.Now;
 
         await _postRepository.Atualizar(postAtualizado);
@@ -107,6 +106,27 @@ public class PostController : Controller
         if (post is null) return NotFound();
 
         await _postRepository.Remover(post.Id);
+
+        return RedirectToAction(nameof(ListarPostsPorUsuario));
+    }
+
+    [HttpPost("curtir")]
+    public async Task<IActionResult> CurtirPost(Guid id)
+    {
+        var post = await _postRepository.ObterPorId(id);
+
+        if (post is null) return NotFound();
+
+        var user = await _user.GetUserAsync(User);
+
+        var curtida = new CurtidaModel()
+        {
+            PostId = post.Id,
+            CriadoEm = DateTime.Now,
+            UserId = Guid.Parse(user!.Id),
+        };
+
+        await _postRepository.CurtirPost(curtida);
 
         return RedirectToAction(nameof(ListarPostsPorUsuario));
     }

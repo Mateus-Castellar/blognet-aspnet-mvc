@@ -21,9 +21,17 @@
                 {
                     <div>
                         <p>@item.Titulo</p>
+                        <p>@item.CriadoEm</p>
+                        <p>@item.Curtidas</p>
+
                         <div class="text-row">
                             <a class="btn btn-primary" asp-controller="Post" asp-action="Editar" asp-route-id="@item.Id">Editar</a>
                             <a class="btn btn-danger" asp-controller="Post" asp-action="Remover" asp-route-id="@item.Id">Remover</a>
+
+                            <form asp-action="CurtirPost">
+                                <input type="hidden" name="id" value="@item.Id"/>
+                                <input type="submit" value="curtir" class="btn btn-success"/>
+                            </form>
                         </div>
                         <hr>
                     </div>

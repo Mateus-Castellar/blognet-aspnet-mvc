@@ -26,10 +26,6 @@ public class PostMapping : IEntityTypeConfiguration<PostModel>
            .HasColumnType("varchar(500)")
            .IsRequired();
 
-        //public int Curtidas { get; set; }
-        builder.Property(x => x.Curtidas)
-            .IsRequired(false);
-
         //public required DateTime CriadoEm { get; set; }
         builder.Property(x => x.CriadoEm)
             .HasColumnType("datetime")
@@ -43,5 +39,9 @@ public class PostMapping : IEntityTypeConfiguration<PostModel>
         //public Guid UserId { get; set; }
         builder.Property(x => x.UserId)
             .IsRequired();
+
+        builder.HasMany(x => x.Curtidas)
+            .WithOne(x => x.PostModel)
+            .HasForeignKey(x => x.PostId);
     }
 }
