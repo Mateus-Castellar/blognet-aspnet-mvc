@@ -22,5 +22,6 @@ Trata-se de um proejto em aspnet mvc, visando uma app simulando uma rede social 
   - [ ] Enviar solicitações de amizades
   - [ ] Aceitar solitações
   - [ ] Recusar solitações
-  - [ ] Curtir uma publicação
+  - [x] Curtir uma publicação
+  - [x] Descurtir uma publicação
   - [ ] Comentar uma publicação
