@@ -10,6 +10,7 @@ public class AppBlogContext : DbContext
 
     public DbSet<PostModel> Posts { get; set; }
     public DbSet<CurtidaModel> Curtidas { get; set; }
+    public DbSet<ComentarioModel> Comentarios { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

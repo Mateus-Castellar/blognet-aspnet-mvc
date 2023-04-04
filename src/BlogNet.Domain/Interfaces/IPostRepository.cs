@@ -8,4 +8,5 @@ public interface IPostRepository : IRepository<PostModel>
     Task CurtirPost(CurtidaModel curtida);
     Task DescurtirPost(CurtidaModel curtida);
     Task<PostModel?> ObterPostCurtidasPorId(Guid id);
+    Task AdicionarComentario(ComentarioModel comentario);
 }

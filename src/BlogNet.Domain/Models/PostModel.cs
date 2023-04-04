@@ -11,4 +11,5 @@ public class PostModel : EntityModel
 
     //EfCore Relational
     public ICollection<CurtidaModel>? Curtidas { get; set; }
+    public ICollection<ComentarioModel>? Comentarios { get; set; }
 }

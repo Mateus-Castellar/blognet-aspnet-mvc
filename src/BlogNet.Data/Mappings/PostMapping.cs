@@ -43,5 +43,9 @@ public class PostMapping : IEntityTypeConfiguration<PostModel>
         builder.HasMany(x => x.Curtidas)
             .WithOne(x => x.PostModel)
             .HasForeignKey(x => x.PostId);
+
+        builder.HasMany(x => x.Comentarios)
+            .WithOne(x => x.Post)
+            .HasForeignKey(x => x.PostId);
     }
 }

@@ -27,4 +27,5 @@ public class PostViewModel
     public Guid UserId { get; set; }
 
     public int? Curtidas { get; set; }
+    public int? Comentarios { get; set; }
 }

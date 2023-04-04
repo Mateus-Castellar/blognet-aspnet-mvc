@@ -8,6 +8,12 @@ public class PostRepository : Repository<PostModel>, IPostRepository
 {
     public PostRepository(AppBlogContext context) : base(context) { }
 
+    public async Task AdicionarComentario(ComentarioModel comentario)
+    {
+        _context.Comentarios.Add(comentario);
+        await _context.SaveChangesAsync();
+    }
+
     public async Task CurtirPost(CurtidaModel curtida)
     {
         _context.Curtidas.Add(curtida);
@@ -32,6 +38,7 @@ public class PostRepository : Repository<PostModel>, IPostRepository
     {
         return await _dbSet
             .Include(x => x.Curtidas)
+            .Include(x => x.Comentarios)
             .Where(x => x.UserId == userId)
             .ToListAsync();
     }

@@ -12,6 +12,8 @@ public class PostProfile : Profile
 
         CreateMap<PostModel, PostViewModel>()
             .ForMember(des => des.Curtidas, opt
-            => opt.MapFrom(src => src.Curtidas.Count));
+            => opt.MapFrom(src => src.Curtidas.Count)
+            ).ForMember(des => des.Comentarios, opt
+            => opt.MapFrom(src => src.Comentarios.Count));
     }
 }

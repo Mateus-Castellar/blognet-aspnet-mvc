@@ -140,4 +140,26 @@ public class PostController : Controller
 
         return RedirectToAction(nameof(ListarPostsPorUsuario));
     }
+
+    [HttpPost("comentar")]
+    public async Task<IActionResult> ComentarPost(Guid id, string comentario)
+    {
+        var post = await _postRepository.ObterPorId(id);
+
+        if (post is null) return NotFound();
+
+        var user = await _user.GetUserAsync(User);
+
+        var novoComentario = new ComentarioModel()
+        {
+            CriadoEm = DateTime.Now,
+            PostId = post.Id,
+            Texto = comentario,
+            UserId = Guid.Parse(user!.Id),
+        };
+
+        await _postRepository.AdicionarComentario(novoComentario);
+
+        return RedirectToAction(nameof(ListarPostsPorUsuario));
+    }
 }
