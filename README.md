@@ -24,4 +24,4 @@ Trata-se de um proejto em aspnet mvc, visando uma app simulando uma rede social 
   - [ ] Recusar solitações
   - [x] Curtir uma publicação
   - [x] Descurtir uma publicação
-  - [ ] Comentar uma publicação
+  - [x] Comentar uma publicação
