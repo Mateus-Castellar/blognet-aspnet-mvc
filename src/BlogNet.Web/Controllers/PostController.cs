@@ -11,15 +11,13 @@ namespace BlogNet.Web.Controllers;
 [Authorize]
 public class PostController : Controller
 {
-    private readonly IPostService _postService;
     private readonly IMapper _mapper;
     private readonly UserManager<IdentityUser> _user;
     private readonly IPostRepository _postRepository;
 
-    public PostController(IPostService postService, IMapper mapper, UserManager<IdentityUser> user,
+    public PostController(IMapper mapper, UserManager<IdentityUser> user,
         IPostRepository postRepository)
     {
-        _postService = postService;
         _mapper = mapper;
         _user = user;
         _postRepository = postRepository;
@@ -42,7 +40,7 @@ public class PostController : Controller
         postViewModel.UserId = Guid.Parse(user!.Id);
         postViewModel.CriadoEm = DateTime.Now;
 
-        await _postService.Adicionar(_mapper.Map<PostModel>(postViewModel));
+        await _postRepository.Adicionar(_mapper.Map<PostModel>(postViewModel));
 
         return RedirectToAction("Index", "Home");
     }
