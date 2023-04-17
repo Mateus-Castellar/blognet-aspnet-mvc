@@ -12,12 +12,14 @@ Trata-se de um proejto em aspnet mvc, visando uma app simulando uma rede social 
 
 ### *Funcionalidades*: ✅
 - [x] Autenticação (login/cadastro/logout) com aspnet identity
+
 - [ ] Posts
   - [x] Adicionar uma nova publicação
   - [x] Editar uma publicação existente
   - [x] Excluir uma publicação
   - [x] Listar publições do usuário
   - [ ] Upload de imagem da publicação
+
 - [ ] Usuarios
   - [ ] Enviar solicitações de amizades
   - [ ] Aceitar solitações
@@ -25,3 +27,8 @@ Trata-se de um proejto em aspnet mvc, visando uma app simulando uma rede social 
   - [x] Curtir uma publicação
   - [x] Descurtir uma publicação
   - [x] Comentar uma publicação
+  
+- [ ] Perfil
+  - [ ] Vizualizar dados
+  - [ ] Atualizar dados
+  - [ ] Upload foto de perfil
